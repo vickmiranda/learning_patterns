@@ -1,0 +1,10 @@
+There are many real-world applications where we need to create only one object,
+        such as thread pools, caches, dialog boxes, registry settings, and so on.
+        If we create multiple instances for each of these applications, it will
+        result in the overuse of resources. Singletons work very well in such
+        situations.
+Singleton; a time-tested and proven method of presenting a global point of
+        access without many downsides.
+Of course, there are a few downsides; Singletons can have an inadvertent impact
+        working with global variables or instantiating classes that are
+        resource-intensive but end up not utilizing them.
