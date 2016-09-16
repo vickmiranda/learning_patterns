@@ -1,3 +1,4 @@
+# Use __new__ when the one needs to control the creation of the new instance
 class Singleton(object):
     # Overwriting the __new__ method to check if attr exists
     def __new__(cls):
