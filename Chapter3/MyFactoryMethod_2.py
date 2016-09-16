@@ -15,28 +15,28 @@ class ReportType(object):
 
 
 # Concrete interfaces
-class ConnectionReport(ReportType):
+class NewsReport(ReportType):
     def execute_process(self):
-        print 'Executing connection report'
+        print 'Executing news report'
 
     def cleanup(self):
-        print 'Cleaning up connection report'
+        print 'Cleaning up news report'
 
 
-class DataReport(ReportType):
+class WorldReport(ReportType):
     def execute_process(self):
-        print 'Executing data report'
+        print 'Executing world report'
 
     def cleanup(self):
-        print 'Cleaning up data report'
+        print 'Cleaning up world report'
 
 
-class PortReport(ReportType):
+class WeatherReport(ReportType):
     def execute_process(self):
-        print 'Executing Port report'
+        print 'Executing weather report'
 
     def cleanup(self):
-        print 'Cleaning up port report'
+        print 'Cleaning up weather report'
 
 
 # This is the creator
@@ -58,27 +58,27 @@ class Report(object):
         return self.reports
 
 
-class ReportCalibration(Report):
+class ReportOne(Report):
     def create_reports(self):
-        self.add_reports(ConnectionReport)
+        self.add_reports(NewsReport)
 
 
-class ReportsFinal(Report):
+class ReportTwo(Report):
     def create_reports(self):
-        self.add_reports(ConnectionReport)
-        self.add_reports(PortReport)
+        self.add_reports(NewsReport)
+        self.add_reports(WeatherReport)
 
 
-class ReportsBurnIn(Report):
+class ReportThree(Report):
     def create_reports(self):
-        self.add_reports(ConnectionReport)
-        self.add_reports(PortReport)
-        self.add_reports(DataReport)
+        self.add_reports(NewsReport)
+        self.add_reports(WeatherReport)
+        self.add_reports(WorldReport)
 
 
 if __name__ == '__main__':
     # Generate Report for BurnIn
-    for_final = ReportsBurnIn()
+    for_final = ReportThree()
     for i in range(len(for_final.reports)):
         for_final.reports[i]().execute_process()
 
