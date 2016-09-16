@@ -1,0 +1,16 @@
+The principle of least knowledge. As you have learned in the initial parts of the
+chapter, the Façade provides a unified system that makes subsystems easy to use.
+It also decouples the client from the subsystem of components. The design
+principle that is employed behind the Façade pattern is the principle of least
+knowledge.
+
+The principle of least knowledge guides us to reduce the interactions between
+objects to just a few friends that are close enough to you. In real terms, it
+means the following:When designing a system, for every object created, one
+should look at the number of classes that it interacts with and the way in which
+the interaction happens.Following the principle, make sure that we avoid
+situations where there are many classes created that are tightly coupled to each
+other.If there are a lot of dependencies between classes, the system becomes
+hard to maintain. Any changes in one part of the system can lead to
+unintentional changes to other parts of the system, which means that the system
+is exposed to regressions and this should be avoided.
