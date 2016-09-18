@@ -88,15 +88,14 @@ class Reports(object):
 class TestDevice(object):
     def __init__(self):
         print 'Start testing dut'
+        self.dut = Dut()
 
     def Run(self):
-        dut = Dut()
-        dut.run_test()
-        dut.cleanup()
-
+        self.dut.run_test()
+        
     def __del__(self):
         print 'Testing device is now completed!'
-
+        self.dut.cleanup()
 # Usage
 if __name__ == '__main__':
     test = TestDevice()
