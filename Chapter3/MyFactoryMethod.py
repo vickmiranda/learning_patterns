@@ -11,24 +11,24 @@ class StationPlan(object):
 
 
 # Concrete products
-class ClosedLoopAll(StationPlan):
+class DCPower(StationPlan):
     def run_process_plan(self):
-        print 'running closed loop all'
+        print 'running dc power loop all'
 
 
-class OpenLoopAll(StationPlan):
+class FrequencyTest(StationPlan):
     def run_process_plan(self):
-        print 'running open loop all'
+        print 'running frequency test 1'
 
 
-class Continuity(StationPlan):
+class MicrophoneTest(StationPlan):
     def run_process_plan(self):
-        print 'run continuity'
+        print 'run microphone test'
 
 
-class StraightThrough(StationPlan):
+class NoiseFigure(StationPlan):
     def run_process_plan(self):
-        print 'running straight through'
+        print 'running Noise figure through'
 
 
 # Now create the creator
@@ -52,20 +52,21 @@ class ProcessPlan(object):
 
 class Final(ProcessPlan):
     def create_plan(self):
-        self.add_process_plan(Continuity)
-        self.add_process_plan(ClosedLoopAll)
-        self.add_process_plan(OpenLoopAll)
+        self.add_process_plan(MicrophoneTest)
+        self.add_process_plan(DCPower)
+        self.add_process_plan(FrequencyTest)
 
 
 class Calibration(ProcessPlan):
     def create_plan(self):
-        self.add_process_plan(StraightThrough)
-        self.add_process_plan(ClosedLoopAll)
-        self.add_process_plan(OpenLoopAll)
+        self.add_process_plan(NoiseFigure)
+        self.add_process_plan(DCPower)
+        self.add_process_plan(FrequencyTest)
 
 if __name__ == '__main__':
     station = input("Give me the station to build? [Final, Calibration]")
     station_type = station()
     print ("Creating station..", eval(type(station_type).__name__))
     print("Profile has section --", station_type.get_process_plan())
-    station_type.process_plans[0]().run_process_plan()
+    for i in range(len(station_type.process_plans)):
+        station_type.process_plans[i]().run_process_plan()
