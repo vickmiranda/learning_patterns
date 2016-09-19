@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 
 class Customer(object):
     def __init__(self):
-        print('Talk to the asian person\n')
+        print('Talk to the asian gentlemen\n')
         self.translator = Translator()
 
     def talk_to_translator(self):
@@ -80,7 +80,7 @@ class Translator(Japanese):
         return response
 
 if __name__ == '__main__':
-    english = Customer()
-    english.talk_to_translator()
-    english.listen()
+    englishman = Customer()
+    englishman.talk_to_translator()
+    englishman.listen()
         
