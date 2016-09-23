@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
+
 class Customer(object):
     def __init__(self):
         print('Talk to the asian gentlemen\n')
@@ -18,6 +19,7 @@ class Customer(object):
             print ('Maybe I need to hire someone else\n')
 
 
+# Required abtract method
 class Japanese(object):
     __metaclass__ = ABCMeta
 
@@ -33,6 +35,7 @@ class Japanese(object):
         pass
 
 
+# This is the object
 class Asian(Japanese):
     def __init__(self):
         self.available = None
@@ -56,6 +59,7 @@ class Asian(Japanese):
         self.audible = audible
 
 
+# This is the proxy
 class Translator(Japanese):
     def __init__(self):
         self.asian = Asian()
@@ -83,4 +87,4 @@ if __name__ == '__main__':
     englishman = Customer()
     englishman.talk_to_translator()
     englishman.listen()
-        
+
