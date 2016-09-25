@@ -86,10 +86,10 @@ class MrHungry(object):
 # Usage
 if __name__ == '__main__':
     print ('Let\'s go and have something to eat!')
-    vicente = MrHungry()
     answer = raw_input('Are you hungry? [Y/N]')
 
     if answer[0].upper() == 'Y':
+        vicente = MrHungry()
         vicente.having_dinner()
     else:
         print ('Ok maybe next time')
