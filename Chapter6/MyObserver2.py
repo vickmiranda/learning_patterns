@@ -21,7 +21,7 @@ class People(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def notify(self, *args, **kwargs):
+    def notify(self, *args):
         pass
 
     @abstractmethod
@@ -34,7 +34,7 @@ class Person1(People):
         self.subject = subject
         self.subject.register(self)
 
-    def notify(self, *args, **kwargs):
+    def notify(self, *args):
         print (type(self).__name__, 'got:', args, 'from',
                type(self.subject).__name__)
 
@@ -48,7 +48,7 @@ class Person2(People):
         self.subject = subject
         self.subject.register(self)
 
-    def notify(self, *args, **kwargs):
+    def notify(self, *args):
         print (type(self).__name__, 'got:', args, 'from',
                type(self.subject).__name__)
 
@@ -61,3 +61,5 @@ lulu = Person1(linkeding)
 paco = Person2(linkeding)
 
 linkeding.email_all('Send email')
+print
+linkeding.maintenance('This coming Sunday there will be a server shutdown')
