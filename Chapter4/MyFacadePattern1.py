@@ -92,7 +92,7 @@ class TestDevice(object):
 
     def Run(self):
         self.dut.run_test()
-        
+
     def __del__(self):
         print 'Testing device is now completed!'
         self.dut.cleanup()
