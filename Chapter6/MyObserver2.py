@@ -56,10 +56,10 @@ class Person2(People):
         print (type(self).__name__, 'got', args, 'from',
                type(self.subject).__name__)
 
-linkeding = Linkedin()
-lulu = Person1(linkeding)
-paco = Person2(linkeding)
+linkedin = Linkedin()
+lulu = Person1(linkedin)
+paco = Person2(linkedin)
 
-linkeding.email_all('Send email')
+linkedin.email_all('Send email')
 print
-linkeding.maintenance('This coming Sunday there will be a server shutdown')
+linkedin.maintenance('This coming Sunday there will be a server shutdown')
