@@ -8,23 +8,25 @@ class Subject(object):
     def notifyall(self, *args, **kwargs):
         for observer in self._observers:
             print 'broadcasting \n'
-            observer.notify(self, *args, **kwargs)
+            observer.notify(*args, **kwargs)
 
 
 class Observer1(object):
     def __init__(self, Subject):
+        self.subject = Subject
         Subject.register(self)
 
-    def notify(self, Subject, args):
-        print(type(self).__name__, ':: Got', args, 'From', Subject)
+    def notify(self, args):
+        print(type(self).__name__, ':: Got', args, 'From', type(self.subject).__name__)
 
 
 class Observer2(object):
     def __init__(self, Subject):
+        self.subject = Subject
         Subject.register(self)
 
-    def notify(self, Subject, args):
-        print(type(self).__name__, '::Got', args, 'From', Subject)
+    def notify(self, args):
+        print(type(self).__name__, '::Got', args, 'From', type(self.subject).__name__)
 
 
 subject = Subject()
