@@ -71,12 +71,21 @@ class WaterController(SystemConfiguration):
         self.instrument = Raspberry
 
 
+class AutoParkimeter(SystemConfiguration):
+    def create_instrument(self):
+        self.instrument = Zync
+
 # usage
 if __name__ == '__main__':
     print 'configure embedded device [WaterController, TestFixture]'
     embedded = WaterController()
     embedded.instrument().memory()
     embedded.instrument().os()
+
+    print
+    new_embedded = AutoParkimeter()
+    new_embedded.instrument().os()
+
 
 
 
