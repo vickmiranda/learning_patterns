@@ -40,9 +40,8 @@ class StationFM3(object):
 
 if __name__ == '__main__':
     subject = RadioBroadcast()
-    station1 = StationFM1(subject)
-    station2 = StationFM2(subject)
-    station3 = StationFM3(subject)
+    for station in [StationFM1, StationFM2, StationFM3]:
+        station(subject)
 
     subject.national_anthem('Time to go home', 'Sing National Anthem\n')
     print

@@ -25,6 +25,9 @@ class DeviceDriver(object):
 
 # Concrete product
 class PowerSupply(DeviceDriver):
+    def __init__(self):
+        print 'create power supply object'
+
     def initialize(self):
         print 'initializing power supply'
 
@@ -40,6 +43,9 @@ class PowerSupply(DeviceDriver):
 
 # Concrete product
 class Multimeter(DeviceDriver):
+    def __init__(self):
+        print 'create multimeter object'
+
     def initialize(self):
         print 'initializing multimeter'
 
@@ -59,6 +65,9 @@ class Multimeter(DeviceDriver):
 
 # Concrete product
 class Oscilloscope(DeviceDriver):
+    def __init__(self):
+        print 'create oscilloscope object'
+
     def initialize(self):
         print 'initializing TDS scope'
 
@@ -107,19 +116,20 @@ class FrontEndRack(RackConfiguration):
 if __name__ == '__main__':
     print 'creating and using FrontEnd rack \n'
     rack = FrontEndRack()
-
-    rack.instruments[device['PowerSupply']]().initialize()
-    rack.instruments[device['Multimeter']]().initialize()
+    rack_ps = rack.instruments[device['PowerSupply']]()
+    rack_ps.initialize()
+    rack_mm = rack.instruments[device['Multimeter']]()
+    rack_mm.initialize()
     print
 
-    rack.instruments[device['PowerSupply']]().configure()
-    rack.instruments[device['Multimeter']]().configure()
+    rack_ps.configure()
+    rack_mm.configure()
 
     # This is the meat
     print 'main execution:\n'
-    rack.instruments[device['PowerSupply']]().self_test()
-    rack.instruments[device['Multimeter']]().measure_dc()
+    rack_ps.self_test()
+    rack_mm.measure_dc()
     print
 
-    rack.instruments[device['PowerSupply']]().cleanup()
-    rack.instruments[device['Multimeter']]().cleanup()
+    rack_ps.cleanup()
+    rack_mm.cleanup()

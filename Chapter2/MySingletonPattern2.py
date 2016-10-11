@@ -10,6 +10,6 @@ class Cell(object):
 c = Cell()
 c1 = Cell()
 
-print type(c).__name__
-print type(c1).__name__
+print type(c).__name__, c
+print type(c1).__name__, c1
 
