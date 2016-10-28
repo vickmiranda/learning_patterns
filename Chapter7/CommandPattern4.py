@@ -1,5 +1,8 @@
 from abc import ABCMeta, abstractmethod
+import threading
+import Queue
 
+my_queue = Queue.Queue()
 
 # My base command
 class Command(object):
