@@ -17,7 +17,7 @@ class CountStuff(threading.Thread):
             if self.num != self.end:
                 self.num += 1
                 self.queue.put(self.num)
-                time.sleep(3)
+                time.sleep(1)
             else:
                 break
 
@@ -28,6 +28,8 @@ while True:
     if not myqueue.empty():
         val = myqueue.get()
         print 'outputing {}'.format(val)
-    time.sleep(2)
+        time.sleep(2)
+    else:
+        break
 
 
