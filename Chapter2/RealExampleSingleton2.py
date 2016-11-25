@@ -13,6 +13,7 @@ class MySingleton(object):
     self.space.append(range)
 
   def get_all_space(self):
+    print 'notice how they share the same physical space'
     return self.space
 
 
