@@ -34,4 +34,3 @@ if __name__ == '__main__':
     building2.add_cameras_building_2()
     for i in building2.security_cameras:
         print ('security camera {}'.format(i))
-

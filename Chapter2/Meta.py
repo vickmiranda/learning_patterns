@@ -6,6 +6,7 @@ from the predefined Python classes. For instance, if you have an object,
 
 '''
 
+
 class MyInt(type):
     def __call__(cls, *args, **kwds):
         print("***** Here's My int *****", args)
@@ -15,18 +16,22 @@ class MyInt(type):
 
 class int(object):
     __metaclass__ = MyInt
+
     def __init__(self, MirrorCal, SystemCal, Final):
         self.MirrorCal = MirrorCal
         self.SystemCal = SystemCal
         self.Final = Final
+
 
 class MyString(type):
     def __call__(cls, *args, **kwargs):
         print ("This is mystring class ", args)
         return type.__call__(cls, *args, **kwargs)
 
+
 class str(object):
     __metaclass__ = MyString
+
     def __init__(self, MirrorCal, SystemCal, Final):
         self.MirrorCal = MirrorCal
         self.SystemCal = SystemCal
@@ -50,5 +55,3 @@ print station_name.count_vowels()
 StationType = int(1, 2, 3)
 print [x for x in StationType.__dict__]
 print StationType.Final
-
-

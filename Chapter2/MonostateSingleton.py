@@ -7,8 +7,10 @@ is based on all objects sharing the same state, it is also known as the
 Monostate pattern
 '''
 
+
 class Borg:
     __shared_state = {'a': 1}
+
     def __init__(self):
         self.x = 1
         self.y = 5

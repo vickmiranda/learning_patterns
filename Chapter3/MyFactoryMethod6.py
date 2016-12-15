@@ -122,14 +122,14 @@ if __name__ == '__main__':
 
     # Careful to instantiate only once
     all_cars = [car() for car in tesla.cars]
-    cheap_cars = [car() for car in ford.cars]
+    american_cars = [car() for car in ford.cars]
 
     for x in all_cars:
         print 'tesla style {}'.format(x.style)
         x.accelerate(90)
         print x.get_speed()
 
-    for y in cheap_cars:
+    for y in american_cars:
         y.accelerate(40)
         print y.get_speed()
         print y.doors
