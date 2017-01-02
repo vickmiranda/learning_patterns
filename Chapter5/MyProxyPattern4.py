@@ -16,7 +16,7 @@ class ProxyClass(CommonInterface):
     self.audio = AudioProcessing()
 
   def process_data(self):
-    print 
+    print
     print 'Heavy computation'
     self.video.process_data()
     self.audio.process_data()
