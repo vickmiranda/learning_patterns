@@ -1,0 +1,15 @@
+from abc import ABCMeta, abstractmethod
+
+# common interface
+
+
+# proxy class
+
+
+# real objects
+
+
+# customer
+
+
+# usage
