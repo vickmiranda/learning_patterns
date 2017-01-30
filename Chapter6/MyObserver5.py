@@ -29,33 +29,31 @@ class Facebook(object):
 class Subscriber(object):
   __metaclass__ = ABCMeta
 
+  def __init__(self, member):
+    self.member = member
+    self.member.add(self)
+
   @abstractmethod
   def update(self):
     pass
 
 
 class Male(Subscriber):
-  def __init__(self, member):
-    self.member = member
-    self.member.add(self)
 
   def update(self):
     print (type(self).__name__, self.member.get_news())
 
 
 class Female(Subscriber):
-  def __init__(self, member):
-    self.member = member
-    self.member.add(self)
 
   def update(self):
     print (type(self).__name__, self.member.get_news())
 
 
 class Teen(Subscriber):
-  def __init__(self, member):
-    self.member = member
-    self.member.add(self)
+
+  def update(self):
+    print (type(self).__name__, self.member.get_news())
 
 
 class Young_adult(Subscriber):
