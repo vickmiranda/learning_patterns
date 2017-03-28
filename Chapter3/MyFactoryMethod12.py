@@ -75,7 +75,20 @@ class TypeSport(object):
     return self.sport_type[index]
 
 # concrete creator
-class EliteSports(object):
-  pass
+class EliteSports(TypeSport):
+  def create_sport(self):
+    self.add_sports(Tennis)
+    self.add_sports(Volleyball)
+
+class TeamSports(TypeSport):
+  def create_sport(self):
+    self.add_sports(Football)
+    self.add_sports(Volleyball)
 
 # usage
+if __name__ == '__main__':
+    team = TeamSports()
+    for i in range(len(team.sport_type)):
+      team.sport_type[i]().practice()
+      team.sport_type[i]().train()
+      team.sport_type[i]().participate()

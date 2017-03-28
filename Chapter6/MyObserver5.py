@@ -56,11 +56,7 @@ class Teen(Subscriber):
     print (type(self).__name__, self.member.get_news())
 
 
-class Young_adult(Subscriber):
-  def __init__(self, member):
-    self.member = member
-    self.member.add(self)
-    
+class YoungAdult(Subscriber):
 
   def update(self):
     print (type(self).__name__, self.member.get_news())
@@ -69,7 +65,7 @@ class Young_adult(Subscriber):
 if __name__ == '__main__':
   user = Facebook()
 
-  for member in [Male, Female, Teen]:
+  for member in [Male, Female, Teen, YoungAdult]:
     member(user)
   print("Subscribers:", user.members())
 
