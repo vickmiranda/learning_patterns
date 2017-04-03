@@ -1,0 +1,13 @@
+# Customer, talks to the proxy
+
+
+# Abstract class uses as base for both
+# Main object and proxy
+
+
+# Main object, secret souce which is the
+# underlining code
+
+
+# Proxy, is the class that acts like the wall
+That's it!
