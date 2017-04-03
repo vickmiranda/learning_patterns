@@ -1,48 +1,89 @@
 from abc import ABCMeta, abstractmethod
 
 
-class GitHub(object):
-    def __init__(self):
-        self._programmers = []
-        self.send_message = None
-
-    def add(self, programmer):
-        self._programmers.append(programmer)
-
-    def remove(self, programmer):
-        self._programmers.remove(programmer)
-
-    def notify(self):
-        for member in self._programmers:
-            member.update()
-
-    def add_news(self, news):
-        self._send_message = news
-
-    def get_news(self):
-        return self._send_message
-
-
-class Subscriber(object):
+class TestPlan(object):
   __metaclass__ = ABCMeta
 
+  def __init__(self):
+    self.test_list = []
+
+  def add_test(self, test):
+    self.test_list.append(test)
+
+  def setup(self):
+    for test in self.test_list:
+      test.setup()
+
+  def execute(self):
+    for test in self.test_list:
+      test.execute()
+
+  def cleanup(self):
+    for test in self.test_list:
+      test.cleanup()
+
+
+class BaseTest(object):
+  __metaclass__ = ABCMeta
+
+  def __init__(self, plan):
+    self.plan = plan
+    self.plan.add_test(self)
+
   @abstractmethod
-  def update(self):
+  def setup(self):
+    pass
+
+  @abstractmethod
+  def execute(self):
+    pass
+
+  @abstractmethod
+  def cleanup(self):
     pass
 
 
-class PythonProgramer(Subscriber):
-    def __init__(self, platform):
-        self.platform = platform
-        self.platform.add(self)
+class Video(BaseTest):
 
-    def update(self):
-        print (type(self).__name__ , ' got news: {} from '.format(self.platform.get_news()), type(self.platform).__name__)
+  def setup(self):
+    print 'run video setup'
+
+  def execute(self):
+    print 'run video execute'
+
+  def cleanup(self):
+    print 'run video cleanup'
+
+
+class Audio(BaseTest):
+  def setup(self):
+    print 'run audio setup'
+
+  def execute(self):
+    print 'run audio execute'
+
+  def cleanup(self):
+    print 'run audio cleanup'
+
+
+class Voltage(BaseTest):
+  def setup(self):
+    print 'run voltage setup'
+
+  def execute(self):
+    print 'run voltage execute'
+
+  def cleanup(self):
+    print 'run voltage cleanup'
 
 
 if __name__ == '__main__':
-    platform = GitHub()
-    member = PythonProgramer(platform)
-    platform.add_news("My excellent news")
-    platform.notify()
-   
+  tp = TestPlan()
+  for test in [Video, Audio, Voltage]:
+    test(tp)
+
+  tp.setup()
+  print
+  tp.execute()
+  print
+  tp.cleanup()

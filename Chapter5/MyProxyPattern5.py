@@ -1,60 +1,103 @@
 from abc import ABCMeta, abstractmethod
 
 
-class Customer(object):
-  def __init__(self):
-    print 'customer init'
-    self.wall = Communication()
-
-  def start_communication(self):
-    self.wall.decrypt()
-    print 'complete decrypting'
-    self.wall.encode()
-    print 'good now try'
-
-
-# Abstract method
-class Message(object):
+# common interface
+class CommonInterface(object):
   __metaclass__ = ABCMeta
 
-  def __init__(self):
-    print ('Please start message\n')
-
   @abstractmethod
-  def decrypt(self):
+  def list(self):
     pass
 
   @abstractmethod
-  def encode(self):
+  def create_dir(self):
     pass
 
+  @abstractmethod
+  def delete_dir(self):
+    pass
 
-# Object, this is not seen by the customer
-class Morse(Message):
-  def decrypt(self):
-    print 'decrypting morse code'
-
-  def encode(self):
-    print 'create morse code'
+  def execute_all(self):
+    self.list()
+    self.create_dir()
+    self.delete_dir()
 
 
-# This is the proxy which servers as the wall
-class Communication(Message):
+# proxy class
+class ProxyClass(CommonInterface):
+
   def __init__(self):
-    super(Communication, self).__init__()
-    self.morse = Morse()
+    self.os = None
 
-  def decrypt(self):
-    self.morse.decrypt()
-    print 'start talk proxy'
+  def select_os(self):
+    response = raw_input("Select the type of operating system [1-Windows, 2-Linux, 3-OSX]")
+    if response == '1':
+      self.os = Windows()
+    elif response == '2':
+      self.os = Linux()
+    elif response == '3':
+      self.os = OSX()
 
-  def encode(self):
-    print 'proxy listening ..'
+    else:
+      print 'Invalid os'
+      raise
 
 
+  def list(self):
+    self.os.list()
+
+  def create_dir(self):
+    self.os.create_dir()
+
+  def delete_dir(self):
+    self.os.delete_dir()
+
+
+# real objects
+class Windows(CommonInterface):
+
+  def list(self):
+    print 'dir on windows'
+
+  def create_dir(self):
+    print 'mkdir on windows'
+
+  def delete_dir(self):
+    print 'del on windows'
+
+
+class Linux(CommonInterface):
+
+  def list(self):
+    print 'ls'
+
+  def create_dir(self):
+    print 'mkdir'
+
+  def delete_dir(self):
+    print 'rf -rf dir_name'
+
+
+class OSX(CommonInterface):
+
+  def list(self):
+    print 'dir'
+
+  def create_dir(self):
+    print 'mkdir'
+
+  def delete_dir(self):
+    print 'del dir OSX'
+
+
+# customer
+class PlayCommands(object):
+  os = ProxyClass()
+  os.select_os()
+
+  os.execute_all()
+
+
+# usage
 if __name__ == '__main__':
-    com = Customer()
-    com.start_communication()
-
-
-
+  PlayCommands()

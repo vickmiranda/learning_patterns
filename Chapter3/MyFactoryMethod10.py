@@ -1,87 +1,93 @@
 from abc import ABCMeta, abstractmethod
 
 
-class Transportation(object):
+# Product interface
+class InstrumentClass(object):
   __metaclass__ = ABCMeta
 
   @abstractmethod
-  def rent_transportation(self):
+  def type_measurement(self):
     pass
 
   @abstractmethod
-  def use_transport(self):
+  def interface(self):
     pass
 
 
-class Car(Transportation):
-  def rent_transportation(self):
-    print 'renting car'
+# Concrete product
+class Voltmeter(InstrumentClass):
+  def type_measurement(self):
+    print 'analog voltmeter'
 
-  def use_transport(self):
-    print 'car transport use'
-
-
-class Truck(Transportation):
-  def rent_transportation(self):
-    print 'renting truck'
-
-  def use_transport(self):
-    print 'muddy truck'
+  def interface(self):
+    print 'volt interface is gpib'
 
 
-class Horse(Transportation):
-  def rent_transportation(self):
-    print 'cool horse power'
+class Oscilloscope(InstrumentClass):
+  def type_measurement(self):
+    print 'digital scope'
 
-  def use_transport(self):
-    print 'ahoo silver'
-
-
-class Bike(Transportation):
-  def rent_transportation(self):
-    print 'chip transport 10 dls'
-
-  def use_transport(self):
-    print 'not bad bike is fine'
+  def interface(self):
+    print 'gpib and ethernet'
 
 
-class ArrangeTransportation(object):
+class PowerSupply(InstrumentClass):
+  def type_measurement(self):
+    print 'power supply is analog'
+
+  def interface(self):
+    print 'no interface for power supply'
+
+
+class DigitalSwitch(InstrumentClass):
+  def type_measurement(self):
+    print 'Switch is digital'
+
+  def interface(self):
+    print 'Usb interface for switch'
+
+
+# create tester
+class CreateTester(object):
   __metaclass__ = ABCMeta
+
   def __init__(self):
-    self.transports = []
-    self.build_trasportation()
+    self.instruments = []
+    self.create_tester()
 
-  def build_trasportation(self):
+  @abstractmethod
+  def create_tester(self):
     pass
 
-  def get_transport(self):
-      return self.transports
+  def add_tester(self, instrument):
+    self.instruments.append(instrument)
 
-  def add_transport(self, value):
-    self.transports.append(value)
-
-
-class SlowTransport(ArrangeTransportation):
-  def build_trasportation(self):
-    self.add_transport(Bike)
-    self.add_transport(Horse)
+  def get_tester(self):
+    return self.instruments
 
 
-class LoadTransport(ArrangeTransportation):
-  def build_trasportation(self):
-    self.add_transport(Truck)
+# create concrete testers
+class HybridTester(CreateTester):
+  def create_tester(self):
+    self.add_tester(DigitalSwitch)
+    self.add_tester(Voltmeter)
+    self.add_tester(Oscilloscope)
+    self.add_tester(PowerSupply)
 
 
-class SpeedyTransport(ArrangeTransportation):
-  def build_trasportation(self):
-    self.add_transport(Car)
-
+class DigitalTester(CreateTester):
+  def create_tester(self):
+    self.add_tester(DigitalSwitch)
+    self.add_tester(Oscilloscope)
+    self.add_tester(Voltmeter)
 
 
 if __name__ == '__main__':
-    slow = SlowTransport()
-    for i in range(len(slow.transports)):
-      slow.transports[i]().rent_transportation()
+  tester = HybridTester()
+  for i in range(len(tester.instruments)):
+    tester.instruments[i]().type_measurement()
+    tester.instruments[i]().interface()
+    print
 
 
 
