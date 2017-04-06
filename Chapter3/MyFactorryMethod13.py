@@ -85,15 +85,23 @@ class BaseStation(object):
   def get_instrument(self, index):
     return self.instruments[index]
 
+  def configure_all(self):
+    for i in self.instruments:
+      i().configure()
+
+  def setup_all(self):
+    for i in self.instruments:
+      i().setup()
+
+  def measurement_all(self):
+    for i in self.instruments:
+      i().measure()
 
 # concrete creator
 class StationOne(BaseStation):
   def create_station(self):
     self.add_instruments(Multimeter)
     self.add_instruments(Scope)
-
-  # def configure(self):
-  #   lambda x: x().configure, self.instruments
 
 
 class StationTwo(BaseStation):
@@ -104,6 +112,9 @@ class StationTwo(BaseStation):
 # usage
 if __name__ == '__main__':
     station = StationOne()
-    for i in range(len(station.instruments)):
-      station.instruments[i]().setup()
-      station.instruments[i]().measure()
+    station.create_station()
+    station.configure_all()
+    print
+    station.setup_all()
+    print
+    station.measurement_all()
