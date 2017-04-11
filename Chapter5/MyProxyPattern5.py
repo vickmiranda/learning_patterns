@@ -42,7 +42,6 @@ class ProxyClass(CommonInterface):
       print 'Invalid os'
       raise
 
-
   def list(self):
     self.os.list()
 
