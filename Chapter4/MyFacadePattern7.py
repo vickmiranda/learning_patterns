@@ -52,9 +52,7 @@ class GoodBoy(object):
     self.plan.mid_day()
     self.plan.end_day()
 
-if __name__ == '__main__':
-    boy = GoodBoy()
-    boy.run()
-
-
 # Usage
+if __name__ == '__main__':
+  boy = GoodBoy()
+  boy.run()
