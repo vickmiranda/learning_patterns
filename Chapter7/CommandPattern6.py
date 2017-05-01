@@ -12,7 +12,7 @@ class Command(object):
   def execute(self):
     pass
 
-
+# This is something I added to keep the invoker cleaner
 class Invoke(object):
   __metaclass__ = ABCMeta
   def __init__(self):
