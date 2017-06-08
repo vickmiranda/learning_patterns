@@ -12,21 +12,6 @@ class Command(object):
     pass
 
 
-# This is something I added to keep the invoker cleaner
-class Invoke(object):
-  __metaclass__ = ABCMeta
-
-  def __init__(self):
-    self.queue = []
-
-  def add_cmd(self, action):
-    self.queue.append(action)
-
-  @abstractmethod
-  def perform(self):
-    pass
-
-
 # The concrete commands are below
 class Futbol(Command):
   def execute(self):
@@ -44,6 +29,21 @@ class VoleyBall(Command):
 
     elif self.action == 'pass':
       self.command.set_ball()
+
+
+# This is something I added to keep the invoker cleaner
+class Invoke(object):
+  __metaclass__ = ABCMeta
+
+  def __init__(self):
+    self.queue = []
+
+  def add_cmd(self, action):
+    self.queue.append(action)
+
+  @abstractmethod
+  def perform(self):
+    pass
 
 
 # receiver this class
